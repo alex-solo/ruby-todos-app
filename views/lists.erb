@@ -1,9 +1,9 @@
 <ul id="lists">
-  <% sort_lists(@lists).each do |list| %>
-    <li class="<%= list_class(list[1]) %>">
-      <a href="/lists/<%= list[0] %>">
-        <h2><%= list[1][:name] %></h2>
-        <p><%= count_todos(list[1][:todos]) %></p>
+  <% sort_lists(@lists) do |list| %>
+    <li class="<%= list_class(list) %>">
+      <a href="/lists/<%= list[:id] %>">
+        <h2><%= list[:name] %></h2>
+        <p><%= count_todos(list[:todos]) %></p>
       </a>
     </li>
   <% end %>

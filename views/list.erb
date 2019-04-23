@@ -13,20 +13,20 @@
       </ul>
   </header>
     <ul>
-      <% sort_todos(@todos).each do |todo| %>
-        <% if todo[1][:completed] %>
+      <% sort_todos(@todos) do |todo| %>
+        <% if todo[:completed] %>
           <li class="complete">
         <% else %>
           <li>
         <% end %>   
 
-          <form action="/lists/<%= @list_id %>/todos/<%= todo[0] %>" method="post" class="check">
-            <input type="hidden" name="completed" value="<%= !todo[1][:completed] %>" />
+          <form action="/lists/<%= @list_id %>/todos/<%= todo[:id] %>" method="post" class="check">
+            <input type="hidden" name="completed" value="<%= !todo[:completed] %>" />
             <button type="submit">Complete</button>
           </form>
 
-          <h3><%= todo[1][:name] %></h3>
-          <form action="/lists/<%= @list_id %>/todos/<%= todo[0] %>/destroy" method="post" class="delete">
+          <h3><%= todo[:name] %></h3>
+          <form action="/lists/<%= @list_id %>/todos/<%= todo[:id] %>/destroy" method="post" class="delete">
             <button type="submit">Delete</button>
           </form>
         </li>
